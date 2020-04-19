@@ -1,0 +1,20 @@
+{
+    "files.associations": {
+        ".vimrc": "bat",
+        "server.h": "c",
+        "iterator": "c",
+        "asciilogo.h": "c",
+        "utility": "c",
+        "socket.h": "c",
+        "zmalloc.h": "c",
+        "stdio.h": "c",
+        "cdefs.h": "c",
+        "time.h": "c",
+        "config.h": "c",
+        "__bit_reference": "cpp",
+        "algorithm": "cpp",
+        "bitset": "cpp",
+        "chrono": "cpp",
+        "unordered_map": "cpp"
+    }
+}
