@@ -3,11 +3,11 @@
 | 源代码 | 核心功能 | 备注 |
 |--|--|--|
 |adlist.c | 双向链表的实现 |   |
-|ae.c | 事件驱动基础库 | |
-|ae_epoll.c | Linux epoll(2)  | |
-|ae_evport.c | 事件端口 | |
-|ae_kqueue.c | Kqueue(2) | |
-|ae_select.c | Select() | |
+|ae.c | 事件驱动基础库，依据 OS | |
+|ae_epoll.c | Linux 平台 epoll(2)  | |
+|ae_evport.c | Solaris 平台 | |
+|ae_kqueue.c | FreeBSD 平台 Kqueue(2) | |
+|ae_select.c | 其他 Unix 平台 Select() | |
 |anet.c | TCP 套接字 | |
 |aof.c | AOF持久化 | |
 |bio.c | 后台 IO 服务| |
