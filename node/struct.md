@@ -46,7 +46,7 @@
 |object.c | Redis 对象实现 | |
 |pqsort.c | Qsort 实现 | |
 |pubsub.c | Pubsub API | |
-|quicklist.c | 快速链表 | |
+|quicklist.c | 双向链表 ziplist | |
 |rand.c | drand48() 实现 | |
 |rax.c | 基数树实现 | |
 |rdb.c | RDB持久化 | |
