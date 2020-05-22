@@ -36,6 +36,8 @@
  * the include of your alternate allocator if needed (not needed in order
  * to use the default libc allocator). */
 
+// 这里 s_realloc 和 s_malloc 的区别是？
+// @todo 搞清楚 下面三个函数的区别
 #include "zmalloc.h"
 #define s_malloc zmalloc
 #define s_realloc zrealloc

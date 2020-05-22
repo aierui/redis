@@ -49,14 +49,14 @@ struct __attribute__ ((__packed__)) sdshdr5 {
     char buf[];
 };
 struct __attribute__ ((__packed__)) sdshdr8 {
-    uint8_t len; /* used */
-    uint8_t alloc; /* excluding the header and null terminator */
-    unsigned char flags; /* 3 lsb of type, 5 unused bits */
-    char buf[];
+    uint8_t len; /* used */ // 已使用长度 用 1 byte 存储
+    uint8_t alloc; /* excluding the header and null terminator */ // 总长度，用 1 byte 存储
+    unsigned char flags; /* 3 lsb of type, 5 unused bits */ // 低 3位 存储类型，高 5 位 预留
+    char buf[]; // 柔性数组，存放实际内容
 };
 struct __attribute__ ((__packed__)) sdshdr16 {
-    uint16_t len; /* used */
-    uint16_t alloc; /* excluding the header and null terminator */
+    uint16_t len; /* used */ // 已使用长度 用 2 byte 存储
+    uint16_t alloc; /* excluding the header and null terminator */ // 总长度，用 2 byte 存储
     unsigned char flags; /* 3 lsb of type, 5 unused bits */
     char buf[];
 };
@@ -85,7 +85,7 @@ struct __attribute__ ((__packed__)) sdshdr64 {
 #define SDS_TYPE_5_LEN(f) ((f)>>SDS_TYPE_BITS)
 
 static inline size_t sdslen(const sds s) {
-    unsigned char flags = s[-1];
+    unsigned char flags = s[-1]; // 这里的 -1 是？
     switch(flags&SDS_TYPE_MASK) {
         case SDS_TYPE_5:
             return SDS_TYPE_5_LEN(flags);
