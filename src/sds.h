@@ -40,12 +40,12 @@ extern const char *SDS_NOINIT;
 #include <stdarg.h>
 #include <stdint.h>
 
-typedef char *sds;
+typedef char *sds; // 长度动态字符串
 
 /* Note: sdshdr5 is never used, we just access the flags byte directly.
  * However is here to document the layout of type 5 SDS strings. */
 struct __attribute__ ((__packed__)) sdshdr5 {
-    unsigned char flags; /* 3 lsb of type, and 5 msb of string length */
+    unsigned char flags; /* 3 lsb of type, and 5 msb of string length */ // 低 3位 存储类型，高 5 位 存储长度，将类型和长度放在同一个属性中，但是创建字符串流程均强制转成 sdshdr8 
     char buf[];
 };
 struct __attribute__ ((__packed__)) sdshdr8 {
