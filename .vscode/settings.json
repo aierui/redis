@@ -1,5 +1,6 @@
 {
     "files.associations": {
+        "*.proto": "proto3",
         ".vimrc": "bat",
         "server.h": "c",
         "iterator": "c",
@@ -15,6 +16,15 @@
         "algorithm": "cpp",
         "bitset": "cpp",
         "chrono": "cpp",
-        "unordered_map": "cpp"
-    }
+        "unordered_map": "cpp",
+        "random": "cpp",
+        "cstdio": "c",
+        "cstdlib": "c",
+        "cwchar": "c",
+        "locale": "c",
+        "memory": "c",
+        "new": "c",
+        "cluster.h": "c"
+    },
+    "commentTranslate.targetLanguage": "zh-CN"
 }

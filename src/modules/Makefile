@@ -1,4 +1,3 @@
-
 # find the OS
 uname_S := $(shell sh -c 'uname -s 2>/dev/null || echo not')
 
@@ -11,9 +10,16 @@ else
 	SHOBJ_LDFLAGS ?= -bundle -undefined dynamic_lookup
 endif
 
+# OS X 11.x doesn't have /usr/lib/libSystem.dylib and needs an explicit setting.
+ifeq ($(uname_S),Darwin)
+ifeq ("$(wildcard /usr/lib/libSystem.dylib)","")
+LIBS = -L /Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/lib -lsystem
+endif
+endif
+
 .SUFFIXES: .c .so .xo .o
 
-all: helloworld.so hellotype.so helloblock.so testmodule.so hellocluster.so hellotimer.so hellodict.so
+all: helloworld.so hellotype.so helloblock.so hellocluster.so hellotimer.so hellodict.so hellohook.so helloacl.so
 
 .c.xo:
 	$(CC) -I. $(CFLAGS) $(SHOBJ_CFLAGS) -fPIC -c $< -o $@
@@ -46,10 +52,16 @@ hellotimer.so: hellotimer.xo
 hellodict.xo: ../redismodule.h
 
 hellodict.so: hellodict.xo
+	$(LD) -o $@ $< $(SHOBJ_LDFLAGS) $(LIBS) -lc
 
-testmodule.xo: ../redismodule.h
+hellohook.xo: ../redismodule.h
 
-testmodule.so: testmodule.xo
+hellohook.so: hellohook.xo
+	$(LD) -o $@ $< $(SHOBJ_LDFLAGS) $(LIBS) -lc
+
+helloacl.xo: ../redismodule.h
+
+helloacl.so: helloacl.xo
 	$(LD) -o $@ $< $(SHOBJ_LDFLAGS) $(LIBS) -lc
 
 clean:
